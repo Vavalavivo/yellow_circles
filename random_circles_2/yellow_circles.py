@@ -1,16 +1,17 @@
 from PyQt5.QtWidgets import QApplication, QPushButton, QMainWindow
 from PyQt5.QtGui import QColor, QPainter
-from PyQt5 import uic
+
+from random_circles_2.py_form import Ui_MainWindow
 
 from random import randint
 
 import sys
 
 
-class Master(QMainWindow):
+class Master(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super().__init__()
-        uic.loadUi('ui_form.ui', self)
+        self.setupUi(self)
         self.main_soft()
 
     def main_soft(self):
@@ -30,8 +31,9 @@ class Master(QMainWindow):
         qp.end()
 
     def draw_circles(self, qp):
-        qp.setBrush(QColor(231, 237, 107))
-        qp.setPen(QColor(231, 237, 107))
+        r, g, b = [randint(0, 255) for i in range(3)]
+        qp.setBrush(QColor(r, g, b))
+        qp.setPen(QColor(r, g, b))
 
         radius = randint(20, 150)
 
